@@ -27,7 +27,7 @@ void display_prompt(void)
  * Return: 1 on EXIT_SUCCESS; 0 on EXIT_FAILURE
  */
 
-int process_input(char *buf_get_line, char **command_ar[])
+int process_input(char *buf_get_line, char *command_ar[])
 {
 	ssize_t n_characters;
 	size_t length = 0;
@@ -59,8 +59,7 @@ int process_input(char *buf_get_line, char **command_ar[])
 	for (i = 0; 1; i++)
 	{
 		token = strtok(((i == 0) ? buf_get_line : NULL), DELIM);
-		*command_ar[i] = token;
-		printf("%s\n", token);
+		command_ar[i] = token;
 		if (token == NULL)
 		{
 			break;

@@ -15,8 +15,8 @@ int main(int argc, char **argv, char **envp)
 	int ok;
 
 	(void)argc;
-        (void)argv;
-        (void)envp;
+    (void)argv;
+	(void)envp;
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -34,10 +34,21 @@ int main(int argc, char **argv, char **envp)
 			while (1)
 			{
 				display_prompt();
-				ok = process_input(buf_get_line, (char ***)&command_ar);
+				ok = process_input(buf_get_line, command_ar);
 				if (ok == EXIT_FAILURE)
 				{
 					continue;
+				}
+				/* Check if path is introduced */
+				/* CONVERT INTO MACROS */
+				if (*command_ar[0] == '/' || (*command_ar[0] == '.' && (*command_ar)[1] == '/'))
+				{
+					execute_fork(command_ar, envp);
+				}
+				else
+				{
+					//Look for path
+					//exec_fork
 				}
 			}
 		}
