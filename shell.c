@@ -14,74 +14,72 @@ int main(int argc, char **argv, char **envp)
 	char *command_ar[BUFFER_SIZE];
 	char *command;
 	char command_copy[BUFFER_SIZE];
-	int ok;
+	int ok = 0;
+	int check_tty = 0;
 
 	(void)argc;
 	(void)argv;
 	(void)envp;
 
-	if (isatty(STDIN_FILENO))
-	{
-		printf("stdin is a terminal\n");
-		if (argc > 1)
-		{
-			/*argc in NO INTERACTIVE mode*/
-		}
-		else
-		{
-			/*argc in INTERACTIVE mode*/
-			/*Signal that receives Ctr+C*/
-			signal(SIGINT, exit);
-			/*sleep(60);*/
+	check_tty = isatty(STDIN_FILENO);
 
-			while (TRUE)
+	if (argc > 1)
+	{
+		/*argc in NO INTERACTIVE mode*/
+	}
+	else
+	{
+		/*argc in INTERACTIVE mode*/
+		/*Signal that receives Ctr+C*/
+		signal(SIGINT, exit);
+		/*sleep(60);*/
+
+		while (ok != EOF)
+		{
+			if (check_tty)
 			{
 				display_prompt();
-				ok = process_input(buf_get_line, command_ar);
-				if (ok == EXIT_FAILURE)
+			}
+			ok = process_input(buf_get_line, command_ar);
+			if (ok == EXIT_FAILURE)
+			{
+				continue;
+			}
+
+			command = command_ar[0];
+			/* Check if path is introduced */
+			if (*command == '/' || (*command == '.' && command[1] == '/'))
+			{
+				execute_fork(command_ar, envp);
+			}
+			else
+			{
+				/* is built-in? */
+				/* if command is built-in execute a function and
+continue
+*/
+				if (is_built_in(command))
 				{
 					continue;
 				}
 
-				command = command_ar[0];
-				/* Check if path is introduced */
-				if (*command == '/' || (*command == '.' && command[1] == '/'))
+				_str_copy((char *)command_copy, command);
+
+				/* iterate PATH to find executable file with (strtok) */
+				/* check if exist file (F_OK) and if can execute(X_OK) */
+				if (_which((char *)command_copy, envp))
 				{
+					/* ls -l 		  = /bin/ls */
+					command_ar[0] = (char *)command_copy;
 					execute_fork(command_ar, envp);
 				}
 				else
 				{
-					/* is built-in? */
-					/* if command is built-in execute a function and
-						continue
-					*/
-					if (is_built_in(command))
-					{
-						continue;
-					}
-
-					_str_copy((char *)command_copy, command);
-
-					/* iterate PATH to find executable file with (strtok) */
-					/* check if exist file (F_OK) and if can execute(X_OK) */
-					if (_which((char *)command_copy, envp))
-					{
-						/* ls -l 		  = /bin/ls */
-						command_ar[0] = (char *)command_copy;
-						execute_fork(command_ar, envp);
-					}
-					else
-					{
-						_str_concat(command, MSG_NOT_FOUND);
-						write(STDOUT_FILENO, command, strlen(command));
-					}
+					_str_concat(command, MSG_NOT_FOUND);
+					write(STDOUT_FILENO, command, strlen(command));
 				}
 			}
 		}
-	}
-	else
-	{
-		printf("stdin is a file or a pipe\n");
 	}
 	return (EXIT_SUCCESS);
 }
