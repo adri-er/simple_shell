@@ -10,17 +10,19 @@
 
 int main(int argc, char **argv, char **envp)
 {
-	char buf_get_line[2048];
-	char *command_ar[2048];
+	char buf_get_line[BUFFER_SIZE];
+	char *command_ar[BUFFER_SIZE];
+	char *command;
+	char command_copy[BUFFER_SIZE];
 	int ok;
 
 	(void)argc;
-    (void)argv;
+	(void)argv;
 	(void)envp;
 
 	if (isatty(STDIN_FILENO))
 	{
-		printf( "stdin is a terminal\n" );
+		printf("stdin is a terminal\n");
 		if (argc > 1)
 		{
 			/*argc in NO INTERACTIVE mode*/
@@ -31,7 +33,8 @@ int main(int argc, char **argv, char **envp)
 			/*Signal that receives Ctr+C*/
 			signal(SIGINT, exit);
 			/*sleep(60);*/
-			while (1)
+
+			while (TRUE)
 			{
 				display_prompt();
 				ok = process_input(buf_get_line, command_ar);
@@ -39,16 +42,39 @@ int main(int argc, char **argv, char **envp)
 				{
 					continue;
 				}
+
+				command = command_ar[0];
 				/* Check if path is introduced */
-				/* CONVERT INTO MACROS */
-				if (*command_ar[0] == '/' || (*command_ar[0] == '.' && (*command_ar)[1] == '/'))
+				if (*command == '/' || (*command == '.' && command[1] == '/'))
 				{
 					execute_fork(command_ar, envp);
 				}
 				else
 				{
-					//Look for path
-					//exec_fork
+					/* is built-in? */
+					/* if command is built-in execute a function and
+						continue
+					*/
+					if (is_built_in(command))
+					{
+						continue;
+					}
+
+					_str_copy((char *)command_copy, command);
+
+					/* iterate PATH to find executable file with (strtok) */
+					/* check if exist file (F_OK) and if can execute(X_OK) */
+					if (_which((char *)command_copy, envp))
+					{
+						/* ls -l 		  = /bin/ls */
+						command_ar[0] = (char *)command_copy;
+						execute_fork(command_ar, envp);
+					}
+					else
+					{
+						_str_concat(command, MSG_NOT_FOUND);
+						write(STDOUT_FILENO, command, strlen(command));
+					}
 				}
 			}
 		}
@@ -57,5 +83,5 @@ int main(int argc, char **argv, char **envp)
 	{
 		printf("stdin is a file or a pipe\n");
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
