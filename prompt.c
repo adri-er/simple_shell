@@ -40,7 +40,8 @@ int process_input(char *buf_get_line, char *command_ar[])
 	/*getline() guard conditions*/
 	if (n_characters == FILE_ERROR)
 	{
-		perror("Error");
+		/* Buscar como se diferencia del caso en que estalla o llega al EOF. se puede solucionar haciendo un propio getline*/
+		/* perror("Error"); */
 		return (EOF);
 	}
 	if (n_characters == 1)

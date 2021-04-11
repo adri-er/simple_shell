@@ -13,6 +13,7 @@
 #define NOT_FOUND_SIZE 11
 #define TRUE 1
 #define FALSE 0
+#define IS_BUILT_IN 1
 
 
 
@@ -46,6 +47,7 @@ char *_getenv(char *key, char *envp[]);
 void _str_concat(char *str1, char *str2);
 void _str_copy(char *buffer, char *text);
 int _which(char *filename, char *envp[]);
+int validate_execute(char *command_array[], char **envp, int argc);
 
 /* built-ins */
 void _printenv(void);
