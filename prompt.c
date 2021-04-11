@@ -41,7 +41,7 @@ int process_input(char *buf_get_line, char *command_ar[])
 	if (n_characters == FILE_ERROR)
 	{
 		perror("Error");
-		return (EXIT_FAILURE);
+		return (EOF);
 	}
 	if (n_characters == 1)
 	{
