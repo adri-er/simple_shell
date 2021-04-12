@@ -1,21 +1,36 @@
 #include "header.h"
 
+/**
+ * execute_no_fork - Execute on parent process.
+ * @command_ar: Array of commands introduced.
+ * @envp: Array of environment variables.
+ *
+ * Return: None.
+ */
 void execute_no_fork(char *command_ar[], char **envp)
 {
-    if (execve(command_ar[0], command_ar, envp) == FILE_ERROR)
-    {
-	    perror("Error");
-	    exit(EXIT_FAILURE);
-    }
+	if (execve(command_ar[0], command_ar, envp) == FILE_ERROR)
+	{
+		perror("Error");
+		exit(EXIT_FAILURE);
+	}
 }
 
+
+/**
+ * execute_fork - Execute on a child process.
+ * @command_ar: Array of commands introduced.
+ * @envp: Array of environment variables.
+ *
+ * Return: None.
+ */
 void execute_fork(char *command_ar[], char **envp)
 {
-    pid_t child;
+	pid_t child;
 
-    child = fork();
+	child = fork();
 	if (child == FILE_ERROR)
-    {
+	{
 		perror("Error");
 		return;
 	}
@@ -23,13 +38,23 @@ void execute_fork(char *command_ar[], char **envp)
 	{
 		execute_no_fork(command_ar, envp);
 	}
-    if (child > CHILD_PID)
-    {
-        wait(NULL);
-        kill(child, SIGKILL);
-    }
+	if (child > CHILD_PID)
+	{
+		wait(NULL);
+		kill(child, SIGKILL);
+	}
 }
 
+
+/**
+ * validate_execute - Validate case, interactive or not,
+ * and execute depending the case.
+ * @command_array: Array of commands introduced in terminal.
+ * @envp: Array of environment variables.
+ * @argc: Number of arguments in terminal.
+ *
+ * Return: None.
+ */
 int validate_execute(char *command_array[], char **envp, int argc)
 {
 	char *command;
@@ -51,7 +76,6 @@ int validate_execute(char *command_array[], char **envp, int argc)
 		/* check if exist file (F_OK) and if can execute(X_OK) */
 		if (_which((char *)command_copy, envp))
 		{
-			/* ls -l 		  = /bin/ls */
 			command_array[0] = (char *)command_copy;
 		}
 		else
@@ -63,7 +87,7 @@ int validate_execute(char *command_array[], char **envp, int argc)
 	}
 	if (argc > 1)
 	{
-		execute_no_fork(command_array, envp);	
+		execute_no_fork(command_array, envp);
 	}
 	else
 	{

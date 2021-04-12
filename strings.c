@@ -1,10 +1,10 @@
 #include "header.h"
 
 /**
- *  _str_cmp - validate if two strings are equals
- *  @str1: text one
- *  @str2: text two
- *  Return: If the texts are equal return 1 else 0
+ *  _str_cmp - validate if two strings are equals.
+ *  @str1: text one.
+ *  @str2: text two.
+ *  Return: If the texts are equal 1, or else 0.
  */
 int _str_cmp(char *str1, char *str2)
 {
@@ -25,10 +25,11 @@ int _str_cmp(char *str1, char *str2)
 }
 
 /**
- *  _str_cmp - validate if two strings are equals
- *  @str1: text one
- *  @str2: text two
- *  Return: If the texts are equal return 1 else 0
+ *  _str_include - validate if one strings is included in another.
+ *  @str1: text one.
+ *  @str2: text two.
+ *
+ *  Return: If the texts are equal 1, or else 0.
  */
 int _str_include(char *str1, char *str2)
 {
@@ -49,9 +50,10 @@ int _str_include(char *str1, char *str2)
 }
 
 /**
- * _str_len - find the length of string
- * @string: char * string
- * Return: size length of the string
+ * _str_len - find the length of a string.
+ * @string: pointer to the string to check its length.
+ *
+ * Return: length of the string.
  */
 size_t _str_len(char *string)
 {
@@ -60,27 +62,28 @@ size_t _str_len(char *string)
 	{
 		return (0);
 	}
-	/* base case */
+
 	/* success */
 	if (!*string)
 	{
 		return (0);
 	}
+
 	/* recursion case */
 	return (1 + _str_len(string + 1));
 }
 
 /**
- * _getenv - find environment variable
- * (recursive)
+ * _getenv - find especific environment variable.
+ *	(recursive)
  *	iterate while envp != NULL
  *		check if envp includes key chars
  *			return (pointer + key_length)
  *		else
-			return (NULL)
- * @key: char * string
- * @envp: char * string
- * Return: value of environment variable
+ *			return (NULL)
+ * @key: char * string.
+ * @envp: char * string.
+ * Return: value of environment variable.
  */
 char *_getenv(char *key, char *envp[])
 {
@@ -89,6 +92,7 @@ char *_getenv(char *key, char *envp[])
 	{
 		return (NULL);
 	}
+
 	/* case base failure find null value*/
 	/* if path is not found */
 	if (!*envp)
@@ -102,14 +106,17 @@ char *_getenv(char *key, char *envp[])
 	{
 		return ((strlen(key) + *envp));
 	}
+
 	/* recursion case */
 	return (_getenv(key, (envp + 1)));
 }
 
 /**
- * _str_concat - Contatenate two strings
- * @str1: char * string
- * @str2: char * string
+ * _str_concat - Contatenate two strings.
+ * @str1: string to get concatenated.
+ * @str2: string to concatenate.
+ *
+ * Return: None.
  */
 void _str_concat(char *str1, char *str2)
 {

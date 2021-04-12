@@ -1,13 +1,10 @@
 #include "header.h"
 
-
 /**
- * display_prompt - functions that prints prompt "$ "
+ * display_prompt - prints prompt specified by buffer "$ ".
  *
- * Return: (void)
+ * Return: None.
  */
-
-
 void display_prompt(void)
 {
 	ssize_t ch;
@@ -21,12 +18,12 @@ void display_prompt(void)
 }
 
 /**
- * process_input - function that receives entry of user (stdin)
+ * process_input - function that receives an entry of user (stdin)
  * and copy entry in buf_get_line
- * @buffer_get_line: pointer to pointer to char buffer in main
- * Return: 1 on EXIT_SUCCESS; 0 on EXIT_FAILURE
+ * @buf_get_line: pointer to pointer to char buffer in main.
+ * @command_ar: array of commands introduced.
+ * Return: EXIT_SUCCESS if valid, EXIT_FAILURE instead.
  */
-
 int process_input(char *buf_get_line, char *command_ar[])
 {
 	ssize_t n_characters;
@@ -40,7 +37,8 @@ int process_input(char *buf_get_line, char *command_ar[])
 	/*getline() guard conditions*/
 	if (n_characters == FILE_ERROR)
 	{
-		/* Buscar como se diferencia del caso en que estalla o llega al EOF. se puede solucionar haciendo un propio getline*/
+		/*  Buscar como se diferencia del caso en que estalla o llega al EOF.*/
+		/*	se puede solucionar haciendo un propio getline */
 		/* perror("Error"); */
 		return (EOF);
 	}

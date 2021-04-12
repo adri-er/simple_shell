@@ -1,18 +1,20 @@
 #include "header.h"
 
-extern char **environ;
 /**
-* _printenv - print environment
+* _printenv - print environment.
+* @envp: environment variables array.
+*
+* Return: None.
 */
-void _printenv()
+void _printenv(char **envp)
 {
 	size_t i, length;
 
-	for (i = 0; environ[i] != NULL; i++)
+	for (i = 0; envp[i] != NULL; i++)
 	{
-		length = _str_len(environ[i]);
+		length = _str_len(envp[i]);
 
-		if (write(STDOUT_FILENO, environ[i], length) == -1)
+		if (write(STDOUT_FILENO, envp[i], length) == -1)
 		{
 			perror("Error");
 			return;
@@ -27,18 +29,24 @@ void _printenv()
 }
 
 /**
+ * quit - Exit the simple shell.
+ * @envp: Environment variables array.
  *
+ * Return: None.
  */
-void quit(void)
+void quit(char **envp)
 {
 	exit(EXIT_SUCCESS);
 }
 
 /**
-*  sele_function - receive char * and search and select by case
-				  correct function
+*  is_built_in - receive pointer nd searches for related function.
+*	@command: Command which is going to relate to a function.
+*	@envp: Array of environment variables.
+*
+*	Return: True if there is a related function, False instead.
 */
-int is_built_in(char *command)
+int is_built_in(char *command, char **envp)
 {
 	size_t i;
 
@@ -52,7 +60,7 @@ int is_built_in(char *command)
 	{
 		if (_str_cmp(command, list[i].name))
 		{
-			list[i].function();
+			list[i].function(envp);
 			return (TRUE);
 		}
 	}

@@ -1,9 +1,11 @@
 #include "header.h"
 
 /**
- *  _which - find in the path executable file
- * @filename: filename to find in path
- * Return: path concatenated with filename
+ * _which - find in the path executable file.
+ * @filename: filename to find in path.
+ * @envp: array of environment variables.
+ *
+ * Return: path concatenated with filename.
  */
 int _which(char *filename, char *envp[])
 {
@@ -23,7 +25,6 @@ int _which(char *filename, char *envp[])
 	/* split by :  and obtain token */
 	for (i = 0; 1; i++)
 	{
-		/*  */
 		token = strtok(((i == 0) ? path_copy : NULL), DELIM_PATH);
 		if (token == NULL)
 		{
@@ -31,6 +32,7 @@ int _which(char *filename, char *envp[])
 		}
 
 		_str_copy(token_copy, token);
+
 		/* concatenate /bin(token) with /    */
 		_str_concat(token_copy, "/");
 

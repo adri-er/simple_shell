@@ -1,13 +1,12 @@
 #include "header.h"
 
 /**
- * main -
- * @argc: interger, number of parameters
- * @argv: pointer to array of pointers of strings (arguments)
- * @envp: pointer to array of pointers of strings (environment variables)
- * Return: 0 on SUCCESS
+ * main - Checks if its pipe case or not and executes corresponding case.
+ * @argc: interger, number of parameters.
+ * @argv: pointer to array of pointers of strings (arguments).
+ * @envp: pointer to array of pointers of strings (environment variables).
+ * Return: 0 on SUCCESS.
  */
-
 int main(int argc, char **argv, char **envp)
 {
 	char buf_get_line[BUFFER_SIZE];
@@ -20,7 +19,7 @@ int main(int argc, char **argv, char **envp)
 	{
 		/*argc in NO INTERACTIVE mode*/
 		argv++;
-		validate_execute(argv, envp, argc);
+		validate_execute(arstring_2.gv, envp, argc);
 		return (EXIT_SUCCESS);
 	}
 	/*argc in INTERACTIVE mode*/

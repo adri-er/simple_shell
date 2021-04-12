@@ -1,0 +1,142 @@
+./" This is the manage of _printf function
+.TH _PRINTF "V1.0" "2021-03-15" "GNU" "_printf Function Manual"
+
+.SH NAME
+_printf
+
+.SH SYNOPSIS
+.PP
+.B	#include \(dqholberton.h\(dq
+.PP
+.B int _printf(const char *format, ...);
+
+.SH DESCRIPTION
+This function prints ARGUMENTS according to FORMAT
+
+FORMAT controls the output as in C _printf Interpreted sequences are:
+.IP \(rs\(dq
+double quote
+.IP \(rs\(rs
+backslash
+.IP \(rsa
+backspace
+.IP \(rsn
+new line
+.IP \(rst
+horizontal tab
+.IP \(rsv
+vertical tab
+.IP %%
+a single %
+.PP
+FORMAT operators used in this function (some of them are not included in the original printf).
+.IP %s
+String value
+.IP %c
+Char value
+.IP %r
+Reverse value
+.IP %R
+Rot13 string value
+.IP %d
+Integer value
+.IP %i
+Integer value
+.IP %u
+Unsigned integer value
+.IP %b
+Integer to Binary value
+.IP %o
+Integer to Octal value
+.IP %x
+Integer to Hexadecimal value (lowercase)
+.IP %X
+Integer to Hexadecimal value (uppercase)
+.IP %p
+Memory address value
+
+.SH RETURN VALUE
+Upon successful return, these functions return the number of characters printed (excluding the null byte used to end output to strings).
+
+.SH EXAMPLES
+The following examples are according the different types of formats defined for this function: 
+
+PRINT A STRING WITH 2 VARIABLES
+.PP
+.B #include \(dqholberton.h\(dq
+.PP
+.B int main()
+.PP
+.B {
+.PP
+.B		char txt1[] = \(dqwith another text\(dq, txt2[] = \(dqand other\(rsn\(dq;
+.PP
+.B		_printf(\(dqExample0: Printing a simple text %s %s\(dq, txt1, txt2);
+.PP
+.B		return (0);
+.PP
+.B }
+
+Output:
+.PP
+.B		Example0: Printing a simple text with another text and other
+.PP
+.B
+
+Simply we are using two arrays strings for be printed replacing the %s operators.
+
+PRINT A INTEGER NUMBER
+.PP
+.B #include "holberton.h"
+.PP
+.B int main()
+.PP		
+.B {
+.PP
+.B		int num1 = 6; 
+.PP
+.B		_printf(\(dqExample1: Printing a integer 6 as %d\(rsn\(dq, num1);
+.PP
+.B		return (0);
+.PP
+.B }
+
+Output:
+.PP
+.B		Example1: Printing a integer 6 as 6
+
+We uses another format operator %d, the output shows that integer stored in the variable num1.
+
+PRINT INTEGER TO A HEXADECIMAL NUMBER
+.PP
+.B #include "holberton.h"
+.PP
+.B int main()
+.PP		
+.B {
+.PP
+.B		unsigned int num4 = 980;
+.PP
+.B		_printf(\(dqExample2: Printing 980 as a hex %x, %X(rsn\(dq, num4, num4);
+.PP
+.B		return (0);
+.PP
+.B }
+
+Output:
+.PP
+.B		Example2: Printing 980 as a hex 3d4, 3D4
+
+In this case we uses %x or %X for convert and print a decimal value to hexadecimal,
+with a X uppercase letter prints O-F letters and the lowercase do the same with a-f. 
+
+.SH BUGS
+Probably if you found a problem with the data, it must be when testing extreme cases with format
+operators that do not make sense, if it is a common use case,
+you can write us at Slack accounts and we begin to verify.
+
+.SH AUTHOR
+Adriana Echeverry, Cristian Pinzon, Jerson Perez.
+
+.SH COPYRIGHT
+Copyright © 2021 Holberton School Cohort 14 Bogota, Colombia. All Rights Reserved.
