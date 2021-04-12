@@ -1,142 +1,215 @@
-./" This is the manage of _printf function
-.TH _PRINTF "V1.0" "2021-03-15" "GNU" "_printf Function Manual"
+./" This is the man page of the simple shell Shell_Name 
+.TH Shell_Name "V1.0" "2021-04-12" "GNU" "Shell_Name Function Manual"
 
 .SH NAME
-_printf
+shell_Name - command interpreter (shell)
 
 .SH SYNOPSIS
 .PP
-.B	#include \(dqholberton.h\(dq
+.B ./shell_name [command_1] [command_2] ...
 .PP
-.B int _printf(const char *format, ...);
+.B ./shell_name
+.PP
+.B [command_1] [command_2] ... | ./shell_name
 
 .SH DESCRIPTION
-This function prints ARGUMENTS according to FORMAT
+.BD -filled
+Shell_Name is a command interpreter based on many of the functionalities of BASH (sh). The current
+version of Shell_Name is in process of being upgraded to conform more features.
+.ED
 
-FORMAT controls the output as in C _printf Interpreted sequences are:
-.IP \(rs\(dq
-double quote
-.IP \(rs\(rs
-backslash
-.IP \(rsa
-backspace
-.IP \(rsn
-new line
-.IP \(rst
-horizontal tab
-.IP \(rsv
-vertical tab
-.IP %%
-a single %
-.PP
-FORMAT operators used in this function (some of them are not included in the original printf).
-.IP %s
-String value
-.IP %c
-Char value
-.IP %r
-Reverse value
-.IP %R
-Rot13 string value
-.IP %d
-Integer value
-.IP %i
-Integer value
-.IP %u
-Unsigned integer value
-.IP %b
-Integer to Binary value
-.IP %o
-Integer to Octal value
-.IP %x
-Integer to Hexadecimal value (lowercase)
-.IP %X
-Integer to Hexadecimal value (uppercase)
-.IP %p
-Memory address value
+.SS Overview
+.BD -filled
+Shell_Name is a command interpreter that will read lines from the standard input file or will
+interpret them from arguments of the terminal. Usually a shell is a program that is running when
+a system starts, nevertheless the shell used can be changed. In the case of the Shell_Name the
+features incorporated are the same in the interactive or non-interactive mode. Shell_Name implements
+control constructs, macro facilities, built in history and line editing characteristics as part of
+its language.
+.ED
 
-.SH RETURN VALUE
-Upon successful return, these functions return the number of characters printed (excluding the null byte used to end output to strings).
+.SS Invocation
+.BD -filled
+In Shell_Name if no arguments are present and if the standard input is connected to a terminal, it is
+considered that the interactive mode is implemented. An interactive shell will only need a call at first
+and since then it will print a prompt and wait for a command to execute. In this case the shell treats the
+first argument as the name of the file from which to read commands. On the other hand, if the shell gets
+runned with arguments or as a pipe, the non-interactive mode is entered and after the command executes,
+the program exits.
+.ED
 
-.SH EXAMPLES
-The following examples are according the different types of formats defined for this function: 
+.SS Quoting
+.BD -filled
+Shell_Name uses quoting as a feature in which a special character or word meaning is ignored. For example,
+it can be implemented with operators, whitespace or keywords. Quoting can be done with single quotes,
+double quotes and backslash. 
+.ED
 
-PRINT A STRING WITH 2 VARIABLES
 .PP
-.B #include \(dqholberton.h\(dq
-.PP
-.B int main()
-.PP
-.B {
-.PP
-.B		char txt1[] = \(dqwith another text\(dq, txt2[] = \(dqand other\(rsn\(dq;
-.PP
-.B		_printf(\(dqExample0: Printing a simple text %s %s\(dq, txt1, txt2);
-.PP
-.B		return (0);
-.PP
-.B }
+.BD -filled
+Backslash preserves the literal meaning of the next character, except for the newline character.
+.ED
 
-Output:
 .PP
-.B		Example0: Printing a simple text with another text and other
-.PP
-.B
+.BD -filled
+Single Quotes preserves the literal meaning of characters enclosed in single quotes, except for single quotes.
+.ED
 
-Simply we are using two arrays strings for be printed replacing the %s operators.
+.PP
+.BD -filled
+Double Quotes preserves the literal meaning of characters enclosed in double quotes, except for the characters
+dollarsign($), backquote(`) and backslash(\(rs).
+.ED
 
-PRINT A INTEGER NUMBER
 .PP
-.B #include "holberton.h"
-.PP
-.B int main()
-.PP		
-.B {
-.PP
-.B		int num1 = 6; 
-.PP
-.B		_printf(\(dqExample1: Printing a integer 6 as %d\(rsn\(dq, num1);
-.PP
-.B		return (0);
-.PP
-.B }
+.BD -filled
+Reserved words are words that the shell set aside with a special meaning. These words are !, elif, fi, while, case,
+else, for, then, }, {, do, done, until, if, esac.
+.ED
 
-Output:
-.PP
-.B		Example1: Printing a integer 6 as 6
+.SS Commands
+.BD -filled
+Shell_Name interprets the words it reads according to a specific language, it manages the word as a command after it
+validates that is not a reserved word.
+.ED
 
-We uses another format operator %d, the output shows that integer stored in the variable num1.
+.PP
+.BD -filled
+Simple commands are just one of the types a shell can have, in Shell_Name most features are directed to them. These are
+processed by first striping off leading words that have a value equal to a name, and operators with their arguments.
+Afterwards, words are expanded and the first is taken as command name and is used to locate the command. While the rest 
+are taken as arguments of the command. complex commands are a combination of simple commands with control operators or
+reserved words.
+.ED
 
-PRINT INTEGER TO A HEXADECIMAL NUMBER
-.PP
-.B #include "holberton.h"
-.PP
-.B int main()
-.PP		
-.B {
-.PP
-.B		unsigned int num4 = 980;
-.PP
-.B		_printf(\(dqExample2: Printing 980 as a hex %x, %X(rsn\(dq, num4, num4);
-.PP
-.B		return (0);
-.PP
-.B }
+.SS Search and Execution
+.BD -filled
+As it was mentioned there are three types of commands: shell functions, builtin commands and normal programs. In this 
+same order Shell_Name searches for the type and does an specific execution depending on the type.
+.ED
 
-Output:
 .PP
-.B		Example2: Printing 980 as a hex 3d4, 3D4
+.BD -filled
+When it is a shell function, all the positional parameters are set as arguments of the function. Variables in the
+command are made local to the function and values given are set. Afterall, the commans is executes and all values
+changed are restored to the original values. Meanwhile, shell builtins are commands executed internally without 
+creating a new process. At last, if the command didn't match any of the previous, the executable file is searched
+in the system within the path.
+.ED
 
-In this case we uses %x or %X for convert and print a decimal value to hexadecimal,
-with a X uppercase letter prints O-F letters and the lowercase do the same with a-f. 
+.PP
+.BD -filled
+A path search is a check through the routes indicated by the environment variable in look for the location of the
+executable file of the command of interest.   
+.ED
+
+.SS Commands Exit Status
+.BD -filled
+The exit status of commands in Shell_Name are 0 in the success or normal case and any other value for error or 
+failure cases.
+.ED
+
+.SS Variables and Parameters
+.BD -filled
+The shell uses a set of parameters, in many cases denoted as a variable. When Shell_Name starts it turns all the 
+environment variables into shell variables. Variables can be created following the form name = value, in which the
+name must consist of alphabetic, numeric and underscores.
+.ED
+
+.SS Special Parameters
+The special parameters that make part of the shell are listed next:
+
+.IP *
+Expands to positional parameter to a single field.
+.IP @
+Expands to positional parameter as a separate argument.
+.IP #
+Expands to the number of positional parameters.
+.IP ?
+Expands to the exit status of most recent pipeline.
+.IP -
+Expands to the current option flags.
+.IP $
+Expands to process ID of invoked shell.
+.IP !
+Expands to process ID of most recent background command.
+.IP 0
+Expands to name of shell or shell script.
+
+.SS Builtins
+.BD -filled
+In the following list, the builtin commands implemented are listed, these commands have in common that
+they perform an operation that can't be done by a separate process.
+.ED
+
+.IP exit
+Terminates the shell process.
+.IP env
+Prints all the environment variables followed as a list.
+
+.SH EXIT STATUS
+.BD -filled
+Shell_Name exits only in the case the exit command is executed if it is in the interactive mode. In any other case
+the shell exits when it finished executing the command or an error is detected.
+.ED
+
+.SH ENVIRONMENT
+.BD -filled
+Shell_Name environment variables are the same ones used by bash shell, these are listed below. For more information
+about the values each have, the bash manual has an extensive description of each.
+.ED
+
+.IP HOME
+PATH
+.IP MAIL
+CDPATH
+.IP PS1
+MAILCHECK
+.IP PS2
+MAILPATH
+.IP PS4
+IFS
+.IP TERM
+HISTSIZE
+.IP PWD
+OLDPWD
+.IP PPID
+
+.SH EXAMPLE
+Print working directory using the interactive mode
+.PP
+.B  ./Shell_NAME
+.PP  
+.B  $ pwd
+.PP
+.B  /home/user12873/simple_shell
+.PP
+.B  $ exit
+.PP
+
+.SH EXAMPLE
+Print working directory using the non-interactive mode
+.PP   
+.B  ./Shell_NAME pwd
+.PP
+.B  /home/user12873/simple_shell
+.PP
+
+.SH EXAMPLE
+Print working directory using a pipe to the file
+.PP   
+.B  pwd | ./Shell_NAME
+.PP
+.B  /home/user12873/simple_shell
+.PP
 
 .SH BUGS
-Probably if you found a problem with the data, it must be when testing extreme cases with format
-operators that do not make sense, if it is a common use case,
-you can write us at Slack accounts and we begin to verify.
+Shell_Name operates without any problem simple commands, for else, any attempt to implement a complex command
+can cause undesired results. If when its implemented there is any case not reaching the desired results, authors
+are open to solve doubts and receive feedback.
 
 .SH AUTHOR
-Adriana Echeverry, Cristian Pinzon, Jerson Perez.
+Oscar Angel, Adriana Echeverri, William Rodriguez.
 
 .SH COPYRIGHT
-Copyright © 2021 Holberton School Cohort 14 Bogota, Colombia. All Rights Reserved.
+Copyright © 2021 Holberton School COH-14 Bogota, Colombia. All Rights Reserved.
