@@ -19,7 +19,7 @@ int main(int argc, char **argv, char **envp)
 	{
 		/*argc in NO INTERACTIVE mode*/
 		argv++;
-		validate_execute(arstring_2.gv, envp, argc);
+		validate_execute((char **)command_array, envp, argc);
 		return (EXIT_SUCCESS);
 	}
 	/*argc in INTERACTIVE mode*/

@@ -36,6 +36,7 @@ void _printenv(char **envp)
  */
 void quit(char **envp)
 {
+	envp = envp;
 	exit(EXIT_SUCCESS);
 }
 

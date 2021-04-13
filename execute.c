@@ -65,7 +65,7 @@ int validate_execute(char *command_array[], char **envp, int argc)
 	{
 		/* is built-in? */
 		/* if command is built-in execute a function and continue*/
-		if (is_built_in(command))
+		if (is_built_in(command, envp))
 		{
 			return (IS_BUILT_IN);
 		}
