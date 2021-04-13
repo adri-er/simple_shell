@@ -1,1 +1,3 @@
-ls -la
+/bin/ls
+ls
+/bin/lsls

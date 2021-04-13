@@ -1,5 +1,11 @@
 #include "header.h"
 
+
+int is_path(char *command)
+{
+	return (*command == '/' || (*command == '.' && command[1] == '/'));
+}
+
 /**
  * _which - find in the path executable file.
  * @filename: filename to find in path.
@@ -16,7 +22,7 @@ int _which(char *filename, char *envp[])
 
 	token = NULL;
 	path = _getenv(PATH, envp);
-	if (!path)
+	if (!path ) /*|| *path == '\0'*/
 	{
 		return (FALSE);
 	}

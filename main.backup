@@ -1,0 +1,9 @@
+/* #include "header.h"
+
+int main(int argc, char *argv[], char *envp[])
+{
+	char *path = _getenv(PATH, envp);
+	*path = '\0';
+	core(argc, argv, envp);
+	return 0;
+} */

@@ -9,13 +9,9 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${fileDirname}/${fileBasenameNoExtension}",
-			"args": [
-				"<",
-				"try_out"
-			],
 			// "args": [
-			// 	"ls",
-			// 	"-la"
+			// 	"<",
+			// 	"try_out"
 			// ],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

@@ -16,7 +16,6 @@ void execute_no_fork(char *command_ar[], char **envp)
 	}
 }
 
-
 /**
  * execute_fork - Execute on a child process.
  * @command_ar: Array of commands introduced.
@@ -45,7 +44,6 @@ void execute_fork(char *command_ar[], char **envp)
 	}
 }
 
-
 /**
  * validate_execute - Validate case, interactive or not,
  * and execute depending the case.
@@ -55,13 +53,13 @@ void execute_fork(char *command_ar[], char **envp)
  *
  * Return: None.
  */
-int validate_execute(char *command_array[], char **envp, int argc)
+int validate_execute(char *command_array[], char **envp, int argc, int counter)
 {
 	char *command;
 	char command_copy[BUFFER_SIZE];
 
 	command = command_array[0];
-	if (*command != '/' || (*command != '.' && command[1] != '/'))
+	if (!is_path(command))
 	{
 		/* is built-in? */
 		/* if command is built-in execute a function and continue*/
@@ -80,8 +78,16 @@ int validate_execute(char *command_array[], char **envp, int argc)
 		}
 		else
 		{
+			// if (access(command, X_OK ) == 0)
+			// {
+			// 	write(STDOUT_FILENO, "cisfun\n", 7);
+			// 	return (EXIT_SUCCESS);
+			// }
+
+			_str_concat(command, LINE);
+			itoa(counter, command);
 			_str_concat(command, MSG_NOT_FOUND);
-			write(STDOUT_FILENO, command, strlen(command));
+			write(STDERR_FILENO, command, strlen(command));
 			return (EXIT_FAILURE);
 		}
 	}

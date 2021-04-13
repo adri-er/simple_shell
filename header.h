@@ -15,7 +15,7 @@
 #define TRUE 1
 #define FALSE 0
 #define IS_BUILT_IN 1
-
+#define LINE ": line "
 
 /* Libraries */
 #include <sys/types.h>
@@ -53,7 +53,10 @@ char *_getenv(char *key, char *envp[]);
 void _str_concat(char *str1, char *str2);
 void _str_copy(char *buffer, char *text);
 int _which(char *filename, char *envp[]);
-int validate_execute(char *command_array[], char **envp, int argc);
+int validate_execute(char *command_array[], char **envp, int argc, int counter);
+int is_path(char *command);
+void itoa(int number, char *text);
+int core(int argc, char **argv, char **envp);
 
 /* built-ins */
 void _printenv(char **envp);

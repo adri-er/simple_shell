@@ -23,3 +23,19 @@ void _str_copy(char *buffer, char *text)
 
 	buffer[i] = '\0';
 }
+
+void itoa(int number, char *text)
+{
+	size_t len_num, len_str, tmp;
+	tmp = number;
+	char c;
+
+	len_str = _str_len(text);
+	for (len_num = 0; tmp; len_num++)
+	{
+		c += '0';
+		text[len_str++] = tmp + '0';
+		tmp = tmp / 10;
+	}
+	text[len_str] = '\0';
+}
