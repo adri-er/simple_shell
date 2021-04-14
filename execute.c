@@ -28,7 +28,7 @@ void _execute_fork(char *command_ar[], char **envp)
 	child = fork();
 	if (child == FILE_ERROR)
 	{
-		perror("Error");
+		perror("");
 		return;
 	}
 	if (child == CHILD_PID)
@@ -52,7 +52,7 @@ void _execute_fork(char *command_ar[], char **envp)
  * Return: 1 (Success) or 0 (Failure) and 2 (Built-in).
  */
 int _validate_execute(char *command_array[], char **envp,
-					 char **argv, int argc, int counter)
+					  char **argv, int argc, int counter)
 {
 	char *command;
 	char command_copy[BUFFER_SIZE];
@@ -72,7 +72,10 @@ int _validate_execute(char *command_array[], char **envp,
 		}
 		else
 		{
-			_print_error(filename, argv, command, counter);
+			write(STDERR_FILENO, argv[0], _str_len(argv[0]));
+			write(STDERR_FILENO, ": No such file or directory\n", 29);
+
+			/* _print_error(filename, argv, command, counter); */
 			return (EXIT_FAILURE);
 		}
 	}
