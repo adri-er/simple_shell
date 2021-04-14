@@ -3,7 +3,7 @@
 
 /* MACROS */
 #define BUFFER_PROMPT "$ "
-#define LENGTH_PROMPT 2
+#define LENGTH_PROMPT 3
 #define DELIM " "
 #define FILE_ERROR -1
 #define CHILD_PID 0
