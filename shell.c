@@ -17,29 +17,25 @@ int main(int argc, char **argv, char **envp)
 
 	if (argc > 1)
 	{
-		/*argc in NO INTERACTIVE mode*/
 		argv++;
-		validate_execute((char **)command_array, envp, argv, argc, counter);
+		_validate_execute((char **)command_array, envp, argv, argc, counter);
 		return (EXIT_SUCCESS);
 	}
-	/*argc in INTERACTIVE mode*/
-	/*Signal that receives Ctr+C*/
 	signal(SIGINT, exit);
-	/*sleep(60);*/
 
 	while (ok != EOF)
 	{
 		counter++;
 		if (check_tty)
 		{
-			display_prompt();
+			_display_prompt();
 		}
-		ok = process_input(buf_get_line, command_array);
+		ok = _process_input(buf_get_line, command_array);
 		if (ok == EXIT_FAILURE || ok == EOF)
 		{
 			continue;
 		}
-		validate_execute((char **)command_array, envp, argv, argc, counter);
+		_validate_execute((char **)command_array, envp, argv, argc, counter);
 	}
 	return (EXIT_SUCCESS);
 }

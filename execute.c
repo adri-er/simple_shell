@@ -1,13 +1,12 @@
 #include "header.h"
 
 /**
- * execute_no_fork - Execute on parent process.
+ * _execute_no_fork - Execute on parent process.
  * @command_ar: Array of commands introduced.
  * @envp: Array of environment variables.
- *
  * Return: None.
  */
-void execute_no_fork(char *command_ar[], char **envp)
+void _execute_no_fork(char *command_ar[], char **envp)
 {
 	if (execve(command_ar[0], command_ar, envp) == FILE_ERROR)
 	{
@@ -17,13 +16,12 @@ void execute_no_fork(char *command_ar[], char **envp)
 }
 
 /**
- * execute_fork - Execute on a child process.
+ * _execute_fork - Execute on a child process.
  * @command_ar: Array of commands introduced.
  * @envp: Array of environment variables.
- *
  * Return: None.
  */
-void execute_fork(char *command_ar[], char **envp)
+void _execute_fork(char *command_ar[], char **envp)
 {
 	pid_t child;
 
@@ -35,7 +33,7 @@ void execute_fork(char *command_ar[], char **envp)
 	}
 	if (child == CHILD_PID)
 	{
-		execute_no_fork(command_ar, envp);
+		_execute_no_fork(command_ar, envp);
 	}
 	if (child > CHILD_PID)
 	{
@@ -43,9 +41,8 @@ void execute_fork(char *command_ar[], char **envp)
 		kill(child, SIGKILL);
 	}
 }
-
 /**
- * validate_execute - Validate case, interactive or not,
+ * _validate_execute - Validate case, interactive or not,
  * and execute depending the case.
  * @command_array: Array of commands introduced in terminal.
  * @envp: Array of environment variables.
@@ -54,7 +51,7 @@ void execute_fork(char *command_ar[], char **envp)
  * @counter: Number of arguments in terminal.
  * Return: 1 (Success) or 0 (Failure) and 2 (Built-in).
  */
-int validate_execute(char *command_array[], char **envp,
+int _validate_execute(char *command_array[], char **envp,
 					 char **argv, int argc, int counter)
 {
 	char *command;
@@ -64,32 +61,28 @@ int validate_execute(char *command_array[], char **envp,
 	command = command_array[0];
 	if (!_is_path(command))
 	{
-		/* is built-in? */
-		/* if command is built-in execute a function and continue*/
-		if (is_built_in(command, envp))
+		if (_is_built_in(command, envp))
 		{
 			return (IS_BUILT_IN);
 		}
 		_str_copy((char *)command_copy, command);
-		/* iterate PATH to find executable file with (strtok) */
-		/* check if exist file (F_OK) and if can execute(X_OK) */
 		if (_which((char *)command_copy, envp))
 		{
 			command_array[0] = (char *)command_copy;
 		}
 		else
 		{
-			print_error(filename, argv, command, counter);
+			_print_error(filename, argv, command, counter);
 			return (EXIT_FAILURE);
 		}
 	}
 	if (argc > 1)
 	{
-		execute_no_fork(command_array, envp);
+		_execute_no_fork(command_array, envp);
 	}
 	else
 	{
-		execute_fork(command_array, envp);
+		_execute_fork(command_array, envp);
 	}
 	return (EXIT_SUCCESS);
 }

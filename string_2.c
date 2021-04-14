@@ -4,7 +4,6 @@
  * _str_copy - Copy a string to a buffer.
  * @buffer: buffer in which string is copied.
  * @text: text to copy in the buffer.
- *
  * Return: None.
  */
 void _str_copy(char *buffer, char *text)
@@ -46,11 +45,15 @@ void _itoa(int number, char *text)
 	}
 	text[len_str] = '\0';
 }
-
-void print_error(char *filename, char **argv, char *command, int counter)
+/**
+ * _print_error - manage error message
+ * @filename: char
+ * @argv: char
+ * @command: char
+ * @counter: int
+ */
+void _print_error(char *filename, char **argv, char *command, int counter)
 {
-	/*	file_name: counter|	 : command : msg							*/
-	/* /bin/sh   : 1      |  : qwerty  : not found */
 	_str_copy((char *)filename, argv[0]);
 	_str_concat(filename, ERROR_SEPARATOR);
 

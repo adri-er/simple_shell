@@ -41,13 +41,13 @@ void _quit(char **envp)
 }
 
 /**
-*  is_built_in - receive pointer nd searches for related function.
+*  _is_built_in - receive pointer nd searches for related function.
 *	@command: Command which is going to relate to a function.
 *	@envp: Array of environment variables.
 *
 *	Return: True if there is a related function, False instead.
 */
-int is_built_in(char *command, char **envp)
+int _is_built_in(char *command, char **envp)
 {
 	size_t i;
 
@@ -56,7 +56,6 @@ int is_built_in(char *command, char **envp)
 		{"exit", _quit},
 		{NULL, NULL}};
 
-	/* check list of built-ins */
 	for (i = 0; list[i].name != NULL; i++)
 	{
 		if (_str_cmp(command, list[i].name))
