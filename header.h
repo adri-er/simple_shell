@@ -40,7 +40,6 @@ typedef struct built_in
 	void (*function)(char **);
 } built_in_t;
 
-
 /* Prototypes*/
 void display_prompt(void);
 int process_input(char *buf_get_line, char *command_ar[]);
@@ -53,7 +52,7 @@ char *_getenv(char *key, char *envp[]);
 void _str_concat(char *str1, char *str2);
 void _str_copy(char *buffer, char *text);
 int _which(char *filename, char *envp[]);
-int validate_execute(char *command_array[], char **envp, int argc, int counter);
+int validate_execute(char **, char **, int, int);
 int is_path(char *command);
 void itoa(int number, char *text);
 int core(int argc, char **argv, char **envp);

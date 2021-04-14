@@ -1,6 +1,10 @@
 #include "header.h"
 
-
+/**
+ * is_path - Check if command is a path
+ * @command: string
+ * Return: 1 (Success) or 0 (Failure)
+ */
 int is_path(char *command)
 {
 	return (*command == '/' || (*command == '.' && command[1] == '/'));
@@ -22,7 +26,7 @@ int _which(char *filename, char *envp[])
 
 	token = NULL;
 	path = _getenv(PATH, envp);
-	if (!path ) /*|| *path == '\0'*/
+	if (!path) /*|| *path == '\0'*/
 	{
 		return (FALSE);
 	}

@@ -24,13 +24,20 @@ void _str_copy(char *buffer, char *text)
 	buffer[i] = '\0';
 }
 
+/**
+ * itoa - transform number to string
+ * @number: int number
+ * @text: char result transform number
+ * Return: None
+ */
 void itoa(int number, char *text)
 {
 	size_t len_num, len_str, tmp;
-	tmp = number;
 	char c;
 
+	tmp = number;
 	len_str = _str_len(text);
+
 	for (len_num = 0; tmp; len_num++)
 	{
 		c += '0';

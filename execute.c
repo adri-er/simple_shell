@@ -50,8 +50,8 @@ void execute_fork(char *command_ar[], char **envp)
  * @command_array: Array of commands introduced in terminal.
  * @envp: Array of environment variables.
  * @argc: Number of arguments in terminal.
- *
- * Return: None.
+ * @counter: Number of arguments in terminal.
+ * Return: 1 (Success) or 0 (Failure) and 2 (Built-in).
  */
 int validate_execute(char *command_array[], char **envp, int argc, int counter)
 {
@@ -78,12 +78,6 @@ int validate_execute(char *command_array[], char **envp, int argc, int counter)
 		}
 		else
 		{
-			// if (access(command, X_OK ) == 0)
-			// {
-			// 	write(STDOUT_FILENO, "cisfun\n", 7);
-			// 	return (EXIT_SUCCESS);
-			// }
-
 			_str_concat(command, LINE);
 			itoa(counter, command);
 			_str_concat(command, MSG_NOT_FOUND);
