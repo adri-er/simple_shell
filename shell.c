@@ -42,7 +42,7 @@ int main(int argc, char **argv, char **envp)
 			continue;
 		}
 		status = _validate_execute((char **)command_array, envp,
-								   argv, argc, counter);
+								   argv, counter);
 	}
 	return (EXIT_SUCCESS);
 }

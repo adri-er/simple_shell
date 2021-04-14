@@ -46,13 +46,12 @@ void _execute_fork(char *command_ar[], char **envp)
  * and execute depending the case.
  * @command_array: Array of commands introduced in terminal.
  * @envp: Array of environment variables.
- * @argc: Number of arguments in terminal.
  * @argv: Main program arguments.
  * @counter: Number of arguments in terminal.
  * Return: 1 (Success) or 0 (Failure) and 2 (Built-in).
  */
 int _validate_execute(char *command_array[], char **envp,
-					  char **argv, int argc, int counter)
+					  char **argv,  int counter)
 {
 	char *command;
 	char command_copy[BUFFER_SIZE];

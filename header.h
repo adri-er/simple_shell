@@ -64,7 +64,7 @@ char *_getenv(char *key, char *envp[]);
 void _str_concat(char *str1, char *str2);
 void _str_copy(char *buffer, char *text);
 int _which(char *filename, char *envp[]);
-int _validate_execute(char **, char **, char **, int, int);
+int _validate_execute(char **, char **, char **, int);
 int _is_path(char *command);
 void _itoa(int number, char *text);
 int _print_error(char *filename, char **argv, char *command, int counter);
