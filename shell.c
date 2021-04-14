@@ -1,6 +1,5 @@
 #include "header.h"
 
-
 /**
  * main - Checks if its pipe case or not and executes corresponding case.
  * @argc: interger, number of parameters.
@@ -16,12 +15,11 @@ int main(int argc, char **argv, char **envp)
 
 	check_tty = isatty(STDIN_FILENO);
 
-
 	if (argc > 1)
 	{
 		/*argc in NO INTERACTIVE mode*/
 		argv++;
-		validate_execute((char **)command_array, envp, argc, counter);
+		validate_execute((char **)command_array, envp, argv, argc, counter);
 		return (EXIT_SUCCESS);
 	}
 	/*argc in INTERACTIVE mode*/
@@ -41,7 +39,7 @@ int main(int argc, char **argv, char **envp)
 		{
 			continue;
 		}
-		validate_execute(command_array, envp, argc, counter);
+		validate_execute((char **)command_array, envp, argv, argc, counter);
 	}
 	return (EXIT_SUCCESS);
 }

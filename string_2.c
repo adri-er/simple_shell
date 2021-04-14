@@ -25,12 +25,12 @@ void _str_copy(char *buffer, char *text)
 }
 
 /**
- * itoa - transform number to string
+ * _itoa - transform number to string
  * @number: int number
  * @text: char result transform number
  * Return: None
  */
-void itoa(int number, char *text)
+void _itoa(int number, char *text)
 {
 	size_t len_num, len_str, tmp;
 	char c;
@@ -45,4 +45,21 @@ void itoa(int number, char *text)
 		tmp = tmp / 10;
 	}
 	text[len_str] = '\0';
+}
+
+void print_error(char *filename, char **argv, char *command, int counter)
+{
+	/*	file_name: counter|	 : command : msg							*/
+	/* /bin/sh   : 1      |  : qwerty  : not found */
+	_str_copy((char *)filename, argv[0]);
+	_str_concat(filename, ERROR_SEPARATOR);
+
+	_itoa(counter, filename);
+	_str_concat(filename, ERROR_SEPARATOR);
+
+	_str_concat(filename, command);
+	_str_concat(filename, ERROR_SEPARATOR);
+
+	_str_concat(filename, MSG_NOT_FOUND);
+	write(STDERR_FILENO, filename, strlen(filename));
 }

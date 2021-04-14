@@ -29,12 +29,12 @@ void _printenv(char **envp)
 }
 
 /**
- * quit - Exit the simple shell.
+ * _quit - Exit the simple shell.
  * @envp: Environment variables array.
  *
  * Return: None.
  */
-void quit(char **envp)
+void _quit(char **envp)
 {
 	envp = envp;
 	exit(EXIT_SUCCESS);
@@ -53,7 +53,7 @@ int is_built_in(char *command, char **envp)
 
 	built_in_t list[] = {
 		{"env", _printenv},
-		{"exit", quit},
+		{"exit", _quit},
 		{NULL, NULL}};
 
 	/* check list of built-ins */

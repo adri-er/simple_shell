@@ -1,11 +1,11 @@
 #include "header.h"
 
 /**
- * is_path - Check if command is a path
+ * _is_path - Check if command is a path
  * @command: string
  * Return: 1 (Success) or 0 (Failure)
  */
-int is_path(char *command)
+int _is_path(char *command)
 {
 	return (*command == '/' || (*command == '.' && command[1] == '/'));
 }

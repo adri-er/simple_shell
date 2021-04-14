@@ -10,12 +10,12 @@
 #define BUFFER_SIZE 2048
 #define PATH "PATH="
 #define DELIM_PATH ":"
-#define MSG_NOT_FOUND ": not found\n"
+#define MSG_NOT_FOUND "not found\n"
 #define NOT_FOUND_SIZE 11
 #define TRUE 1
 #define FALSE 0
 #define IS_BUILT_IN 1
-#define LINE ": line "
+#define ERROR_SEPARATOR ": "
 
 /* Libraries */
 #include <sys/types.h>
@@ -52,13 +52,15 @@ char *_getenv(char *key, char *envp[]);
 void _str_concat(char *str1, char *str2);
 void _str_copy(char *buffer, char *text);
 int _which(char *filename, char *envp[]);
-int validate_execute(char **, char **, int, int);
-int is_path(char *command);
-void itoa(int number, char *text);
-int core(int argc, char **argv, char **envp);
+int validate_execute(char **, char **, char **, int, int);
+int _is_path(char *command);
+void _itoa(int number, char *text);
+void print_error(char *filename, char **argv, char *command, int counter);
+
+
 
 /* built-ins */
 void _printenv(char **envp);
-void quit(char **envp);
+void _quit(char **envp);
 
 #endif /* HEADER_H */
