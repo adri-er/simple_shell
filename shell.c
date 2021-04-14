@@ -11,7 +11,7 @@ int main(int argc, char **argv, char **envp)
 {
 	char buf_get_line[BUFFER_SIZE];
 	char *command_array[BUFFER_SIZE];
-	int ok = 0, check_tty = 0, counter = 0;
+	int ok = 0, check_tty = 0, counter = 0 , status = 0;
 
 	check_tty = isatty(STDIN_FILENO);
 
@@ -34,9 +34,14 @@ int main(int argc, char **argv, char **envp)
 		ok = _process_input(buf_get_line, command_array);
 		if (ok == EXIT_FAILURE || ok == EOF)
 		{
+			if (status == EXIT_FAILURE && (isatty(STDIN_FILENO) == 0 || argc > 1))
+			{
+				exit(127);
+			}
 			continue;
 		}
-		_validate_execute((char **)command_array, envp, argv, argc, counter);
+
+		status = _validate_execute((char **)command_array, envp, argv, argc, counter);
 	}
 	return (EXIT_SUCCESS);
 }
