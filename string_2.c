@@ -57,7 +57,7 @@ int _print_error(char *filename, char **argv, char *command, int counter)
 {
 	char *msg = NULL;
 
-	if (_str_len(filename) > FILENAME_LIMIT_SIZE)
+	if (_str_len(command) > FILENAME_LIMIT_SIZE)
 	{
 		msg = MSG_NAME_LONG;
 	}

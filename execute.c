@@ -71,7 +71,7 @@ int _validate_execute(char *command_array[], char **envp,
 			command_array[0] = (char *)command_copy;
 		}
 	}
-	is_error = _print_error(filename, argv, command, counter);
+	is_error = _print_error(filename, argv, command_array[0], counter);
 	if (is_error == 0)
 		return (EXIT_FAILURE);
 
