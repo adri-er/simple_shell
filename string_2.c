@@ -51,6 +51,7 @@ void _itoa(int number, char *text)
  * @argv: char
  * @command: char
  * @counter: int
+ * Return: 0 if print success or 1 if not have error
  */
 int _print_error(char *filename, char **argv, char *command, int counter)
 {
@@ -59,7 +60,6 @@ int _print_error(char *filename, char **argv, char *command, int counter)
 	if (_str_len(filename) > FILENAME_LIMIT_SIZE)
 	{
 		msg = MSG_NAME_LONG;
-
 	}
 	else if (command == NULL)
 	{
@@ -86,13 +86,10 @@ int _print_error(char *filename, char **argv, char *command, int counter)
 
 	_str_copy((char *)filename, argv[0]);
 	_str_concat(filename, ERROR_SEPARATOR);
-
 	_itoa(counter, filename);
 	_str_concat(filename, ERROR_SEPARATOR);
-
 	_str_concat(filename, command);
 	_str_concat(filename, ERROR_SEPARATOR);
-
 	_str_concat(filename, msg);
 	write(STDERR_FILENO, filename, _str_len(filename));
 

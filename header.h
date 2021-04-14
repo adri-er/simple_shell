@@ -54,7 +54,7 @@ typedef struct built_in_struct
 
 /* Prototypes*/
 void _display_prompt(void);
-int _process_input(char *buf_get_line, char *command_ar[], char *argv[], int counter);
+int _process_input(char *, char **, char **, int);
 void _execute_no_fork(char *command_ar[], char **envp);
 void _execute_fork(char *command_ar[], char **envp);
 int _str_cmp(char *str1, char *str2);

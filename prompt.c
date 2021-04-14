@@ -20,9 +20,12 @@ void _display_prompt(void)
  * and copy entry in buf_get_line
  * @buf_get_line: pointer to pointer to char buffer in main.
  * @command_ar: array of commands introduced.
+ * @argv: array of Arguments.
+ * @counter: counter of number or commands attempt to executed.
  * Return: EXIT_SUCCESS if valid, EXIT_FAILURE instead.
  */
-int _process_input(char *buf_get_line, char *command_ar[], char *argv[], int counter)
+int _process_input(char *buf_get_line, char *command_ar[],
+				   char *argv[], int counter)
 {
 	ssize_t n_characters;
 	size_t length = 0;
