@@ -33,6 +33,7 @@ int _process_input(char *buf_get_line, char *command_ar[])
 	n_characters = getline(&buffer_tmp, &length, stdin);
 	if (n_characters == FILE_ERROR)
 	{
+		free(buffer_tmp);
 		return (EOF);
 	}
 	if (n_characters == 1)

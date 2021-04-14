@@ -1,7 +1,1 @@
-ls
 /bin/ls
-/bin/ls -l
-^[[D^[[D^[[D
-^[[C^[[C^[[C^[[C
-^C
-exit

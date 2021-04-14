@@ -17,8 +17,9 @@ int main(int argc, char **argv, char **envp)
 
 	if (argc > 1)
 	{
+		counter = 1;
 		argv++;
-		_validate_execute((char **)command_array, envp, argv, argc, counter);
+		_validate_execute(argv, envp, argv, argc, counter);
 		return (EXIT_SUCCESS);
 	}
 	signal(SIGINT, exit);
