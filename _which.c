@@ -39,12 +39,10 @@ int _which(char *filename, char *envp[])
 		}
 
 		_str_copy(token_copy, token);
-
 		_str_concat(token_copy, "/");
-
 		_str_concat(token_copy, filename);
 
-		if (access(token_copy, F_OK | X_OK) != -1)
+		if (access(token_copy, F_OK) != -1)
 		{
 			_str_copy(filename, token_copy);
 			return (TRUE);

@@ -17,10 +17,13 @@ int main(int argc, char **argv, char **envp)
 
 	if (argc > 1)
 	{
+		_print_error(argv[0], argv, NULL, counter);
+		/*
 		counter = 1;
 		argv++;
 		_validate_execute(argv, envp, argv, argc, counter);
-		return (EXIT_SUCCESS);
+		*/
+		exit(EXIT_SH_FAILURE);
 	}
 	signal(SIGINT, exit);
 
@@ -31,12 +34,12 @@ int main(int argc, char **argv, char **envp)
 		{
 			_display_prompt();
 		}
-		ok = _process_input(buf_get_line, command_array);
+		ok = _process_input(buf_get_line, command_array, argv, counter);
 		if (ok == EXIT_FAILURE || ok == EOF)
 		{
-			if (status == EXIT_FAILURE && (isatty(STDIN_FILENO) == 0 || argc > 1))
+			if (status == EXIT_FAILURE && (isatty(STDIN_FILENO) == 0))
 			{
-				exit(127);
+				exit(EXIT_SH_FAILURE);
 			}
 			continue;
 		}

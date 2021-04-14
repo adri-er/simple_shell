@@ -52,8 +52,38 @@ void _itoa(int number, char *text)
  * @command: char
  * @counter: int
  */
-void _print_error(char *filename, char **argv, char *command, int counter)
+int _print_error(char *filename, char **argv, char *command, int counter)
 {
+	char *msg = NULL;
+
+	if (_str_len(filename) > FILENAME_LIMIT_SIZE)
+	{
+		msg = MSG_NAME_LONG;
+
+	}
+	else if (command == NULL)
+	{
+		_str_copy((char *)filename, argv[0]);
+		_str_concat(filename, ERROR_SEPARATOR);
+		_itoa(counter, filename);
+		_str_concat(filename, ERROR_SEPARATOR);
+		_str_concat(filename, MSG_ARG_MODE);
+		_str_concat(filename, argv[1]);
+		write(STDERR_FILENO, filename, _str_len(filename));
+		return (EXIT_SUCCESS);
+	}
+	else if (access(command, F_OK) == -1)
+	{
+		msg = MSG_NOT_FOUND;
+	}
+	else if (access(command, X_OK | R_OK) == -1)
+	{
+		msg = MSG_NO_EXEC;
+	}
+
+	if (!msg)
+		return (EXIT_FAILURE);
+
 	_str_copy((char *)filename, argv[0]);
 	_str_concat(filename, ERROR_SEPARATOR);
 
@@ -63,6 +93,8 @@ void _print_error(char *filename, char **argv, char *command, int counter)
 	_str_concat(filename, command);
 	_str_concat(filename, ERROR_SEPARATOR);
 
-	_str_concat(filename, MSG_NOT_FOUND);
+	_str_concat(filename, msg);
 	write(STDERR_FILENO, filename, _str_len(filename));
+
+	return (EXIT_SUCCESS);
 }

@@ -8,8 +8,11 @@
 			"name": "gcc-9 - Build and debug active file",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${fileDirname}/${fileBasenameNoExtension}",
-			"args": [],
+			"program": "${fileDirname}/hsh",
+			"args": [
+				"<",
+				"try_out"
+			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

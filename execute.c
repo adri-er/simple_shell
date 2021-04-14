@@ -57,6 +57,7 @@ int _validate_execute(char *command_array[], char **envp,
 	char *command;
 	char command_copy[BUFFER_SIZE];
 	char filename[BUFFER_SIZE];
+	int is_error = 0;
 
 	command = command_array[0];
 	if (!_is_path(command))
@@ -70,24 +71,11 @@ int _validate_execute(char *command_array[], char **envp,
 		{
 			command_array[0] = (char *)command_copy;
 		}
-		else
-		{
-			/*
-			write(STDERR_FILENO, argv[0], _str_len(argv[0]));
-			write(STDERR_FILENO, ": No such file or directory\n", 29);
-			counter = counter;
-			*/
-			_print_error(filename, argv, command, counter);
-			return (EXIT_FAILURE);
-		}
 	}
-	if (argc > 1)
-	{
-		_execute_no_fork(command_array, envp);
-	}
-	else
-	{
-		_execute_fork(command_array, envp);
-	}
+	is_error = _print_error(filename, argv, command, counter);
+	if (is_error == 0)
+		return (EXIT_FAILURE);
+
+	_execute_fork(command_array, envp);
 	return (EXIT_SUCCESS);
 }

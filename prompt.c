@@ -22,7 +22,7 @@ void _display_prompt(void)
  * @command_ar: array of commands introduced.
  * Return: EXIT_SUCCESS if valid, EXIT_FAILURE instead.
  */
-int _process_input(char *buf_get_line, char *command_ar[])
+int _process_input(char *buf_get_line, char *command_ar[], char *argv[], int counter)
 {
 	ssize_t n_characters;
 	size_t length = 0;
@@ -54,6 +54,12 @@ int _process_input(char *buf_get_line, char *command_ar[])
 		if (token == NULL)
 		{
 			break;
+		}
+
+		if (i == 0 && _str_len(token) > FILENAME_LIMIT_SIZE)
+		{
+			_print_error(argv[0], argv, token, counter);
+			return (EXIT_FAILURE);
 		}
 	}
 	return (EXIT_SUCCESS);

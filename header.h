@@ -10,12 +10,27 @@
 #define BUFFER_SIZE 2048
 #define PATH "PATH="
 #define DELIM_PATH ":"
-#define MSG_NOT_FOUND "not found\n"
+#define FILENAME_LIMIT_SIZE 255
+
 #define NOT_FOUND_SIZE 11
 #define TRUE 1
 #define FALSE 0
 #define IS_BUILT_IN 1
 #define ERROR_SEPARATOR ": "
+
+/* constants error */
+#define ERR_EXEC_NO_READ 2
+#define ERR_NAME_LONG 3
+#define ERR_NO_EXEC 4
+#define ERR_NOT_FOUND 5
+
+/* constants error */
+#define MSG_ARG_MODE "Can't open "
+#define MSG_NAME_LONG "File name too long\n"
+#define MSG_NO_EXEC "Permission denied\n"
+#define MSG_NOT_FOUND "not found\n"
+
+#define EXIT_SH_FAILURE 127
 
 /* Libraries */
 #include <sys/types.h>
@@ -39,7 +54,7 @@ typedef struct built_in_struct
 
 /* Prototypes*/
 void _display_prompt(void);
-int _process_input(char *buf_get_line, char *command_ar[]);
+int _process_input(char *buf_get_line, char *command_ar[], char *argv[], int counter);
 void _execute_no_fork(char *command_ar[], char **envp);
 void _execute_fork(char *command_ar[], char **envp);
 int _str_cmp(char *str1, char *str2);
@@ -52,7 +67,7 @@ int _which(char *filename, char *envp[]);
 int _validate_execute(char **, char **, char **, int, int);
 int _is_path(char *command);
 void _itoa(int number, char *text);
-void _print_error(char *filename, char **argv, char *command, int counter);
+int _print_error(char *filename, char **argv, char *command, int counter);
 
 /* built-ins */
 void _printenv(char **envp);
