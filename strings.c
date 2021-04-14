@@ -104,7 +104,7 @@ char *_getenv(char *key, char *envp[])
 	/*match keys*/
 	if (_str_include(key, *envp))
 	{
-		return ((strlen(key) + *envp));
+		return ((_str_len(key) + *envp));
 	}
 
 	/* recursion case */

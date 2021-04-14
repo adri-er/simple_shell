@@ -61,5 +61,5 @@ void print_error(char *filename, char **argv, char *command, int counter)
 	_str_concat(filename, ERROR_SEPARATOR);
 
 	_str_concat(filename, MSG_NOT_FOUND);
-	write(STDERR_FILENO, filename, strlen(filename));
+	write(STDERR_FILENO, filename, _str_len(filename));
 }
