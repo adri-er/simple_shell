@@ -36,7 +36,6 @@ void _printenv(char **envp)
 /**
  * _quit - Exit the simple shell.
  * @envp: Environment variables array.
- *
  * Return: None.
  */
 void _quit(char **envp)
@@ -49,7 +48,6 @@ void _quit(char **envp)
 *  _is_built_in - receive pointer nd searches for related function.
 *	@command: Command which is going to relate to a function.
 *	@envp: Array of environment variables.
-*
 *	Return: True if there is a related function, False instead.
 */
 int _is_built_in(char *command, char **envp)
