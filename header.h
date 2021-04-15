@@ -57,19 +57,21 @@ void _display_prompt(void);
 int _process_input(char *, char **, char **, int);
 void _execute_no_fork(char *command_ar[], char **envp);
 int _execute_fork(char *command_ar[], char **envp);
-int _str_cmp(char *str1, char *str2);
-int _is_built_in(char *command, char **envp);
 char *_getenv(char *key, char *envp[]);
 int _which(char *filename, char *envp[]);
 int _validate_execute(char **, char **, char **, int);
-int _is_path(char *command);
 int _print_error(char *filename, char **argv, char *command, int counter);
+
+/* Verification */
+int _is_path(char *command);
+int _is_built_in(char *command, char **envp);
 
 /* String manipulation */
 void _itoa(int number, char *text);
 void _str_concat(char *str1, char *str2);
 void _str_copy(char *buffer, char *text);
 size_t _str_len(char *string);
+int _str_cmp(char *str1, char *str2);
 
 /* built-ins */
 void _printenv(char **envp);
