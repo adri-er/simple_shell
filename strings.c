@@ -115,7 +115,6 @@ char *_getenv(char *key, char *envp[])
  * _str_concat - Contatenate two strings.
  * @str1: string to get concatenated.
  * @str2: string to concatenate.
- *
  * Return: None.
  */
 void _str_concat(char *str1, char *str2)
