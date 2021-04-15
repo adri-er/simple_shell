@@ -27,7 +27,7 @@ void _display_prompt(void)
 int _process_input(char *buf_get_line, char *command_ar[],
 				   char *argv[], int counter)
 {
-	ssize_t n_characters, i, j, double_spaces;
+	ssize_t n_characters = 0, i = 0, j = 0, double_spaces = 0;
 	size_t length = 0;
 	char *buffer_tmp = NULL, *token = NULL;
 
@@ -42,7 +42,7 @@ int _process_input(char *buf_get_line, char *command_ar[],
 		free(buffer_tmp);
 		return (EXIT_FAILURE);
 	}
-	for (i = 0; i < n_characters; i++)
+	for (i = 0, j = 0; i < n_characters; i++)
 	{
 		if (buffer_tmp[i] != ' ')
 			double_spaces = 1;
@@ -53,7 +53,12 @@ int _process_input(char *buf_get_line, char *command_ar[],
 		}
 	}
 	free(buffer_tmp);
-	buf_get_line[i - 1] = '\0';
+
+	if (j == 1)
+		return (EXIT_FAILURE);
+
+	buf_get_line[j - 1] = '\0';
+
 	for (i = 0; 1; i++)
 	{
 		token = strtok(((i == 0) ? buf_get_line : NULL), DELIM);
