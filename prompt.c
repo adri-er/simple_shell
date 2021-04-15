@@ -17,7 +17,7 @@ void _display_prompt(void)
 
 /**
  * _process_input - function that receives an entry of user (stdin)
- * and copy entry in buf_get_line
+ * and copy entry in buf_get_line.
  * @buf_get_line: pointer to pointer to char buffer in main.
  * @command_ar: array of commands introduced.
  * @argv: array of Arguments.

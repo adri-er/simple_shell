@@ -5,7 +5,7 @@
  * @argc: interger, number of parameters.
  * @argv: pointer to array of pointers of strings (arguments).
  * @envp: pointer to array of pointers of strings (environment variables).
- * Return: 0 on SUCCESS.
+ * Return: 0 on SUCCESS, 127 on error.
  */
 int main(int argc, char **argv, char **envp)
 {
@@ -19,9 +19,6 @@ int main(int argc, char **argv, char **envp)
 	if (argc > 1)
 	{
 		_print_error(argv[0], argv, NULL, counter);
-		/*  counter = 1; */
-		/*	argv++; */
-		/*	_validate_execute(argv, envp, argv, argc, counter); */
 		exit(EXIT_SH_FAILURE);
 	}
 	signal(SIGINT, exit);
