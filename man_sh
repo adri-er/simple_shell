@@ -6,11 +6,9 @@ SHOLBIE - command interpreter (shell)
 
 .SH SYNOPSIS
 .PP
-.B ./SHOLBIE [command_1] [command_2] ...
+.B ./hsh
 .PP
-.B ./SHOLBIE
-.PP
-.B [command_1] [command_2] ... | ./SHOLBIE
+.B echo \(dq[command] [argument_1] [argument_2] ...\(dq | ./hsh
 
 .SH DESCRIPTION
 .BD -filled
@@ -178,7 +176,7 @@ OLDPWD
 .SH EXAMPLE
 Print working directory using the interactive mode
 .PP
-.B  ./SHOLBIE
+.B  ./hsh
 .PP  
 .B  $ pwd
 .PP
@@ -188,17 +186,9 @@ Print working directory using the interactive mode
 .PP
 
 .SH EXAMPLE
-Print working directory using the non-interactive mode
-.PP   
-.B  ./SHOLBIE pwd
-.PP
-.B  /home/user12873/simple_shell
-.PP
-
-.SH EXAMPLE
 Print working directory using a pipe to the file
 .PP   
-.B  pwd | ./SHOLBIE
+.B  echo \(dq pwd \(dq | ./hsh
 .PP
 .B  /home/user12873/simple_shell
 .PP

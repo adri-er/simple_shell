@@ -5,7 +5,7 @@
 
 Description
 
-This is Unix Shell project Command Line Interface for Linux systems. This Shell can interpretate instructions and perform Syscall or instruction.
+This is Unix Shell project Command Line Interface for Linux systems. This Shell can interpretate instructions and perform Syscall.
 
 <img src="./img/shell.png" alt="holbie" height="150" >
 
@@ -17,7 +17,7 @@ This is Unix Shell project Command Line Interface for Linux systems. This Shell 
 
 ### Built-ins
 
-Built-ins are custom Commands in Shell
+Built-ins are custom commands in Shell
 - **env** print current environment
 - **exit** close the shell.
 
