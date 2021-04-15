@@ -53,12 +53,9 @@ int _process_input(char *buf_get_line, char *command_ar[],
 		}
 	}
 	free(buffer_tmp);
-
 	if (j == 1)
 		return (EXIT_FAILURE);
-
 	buf_get_line[j - 1] = '\0';
-
 	for (i = 0; 1; i++)
 	{
 		token = strtok(((i == 0) ? buf_get_line : NULL), DELIM);
