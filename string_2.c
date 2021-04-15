@@ -47,11 +47,11 @@ void _itoa(int number, char *text)
 }
 /**
  * _print_error - manage error message
- * @filename: char
- * @argv: char
- * @command: char
- * @counter: int
- * Return: 0 if print success or 1 if not have error
+ * @filename: pointer to the name of the file.
+ * @argv: array of arguments introduced.
+ * @command: command, name of file.
+ * @counter: counter of how many processes have been done.
+ * Return: 0 if prints success or 1 if have error.
  */
 int _print_error(char *filename, char **argv, char *command, int counter)
 {
