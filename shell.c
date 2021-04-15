@@ -5,7 +5,7 @@
  * @argc: interger, number of parameters.
  * @argv: pointer to array of pointers of strings (arguments).
  * @envp: pointer to array of pointers of strings (environment variables).
- * Return: 0 on SUCCESS.
+ * Return: 0 on SUCCESS, 127 on error.
  */
 int main(int argc, char **argv, char **envp)
 {
