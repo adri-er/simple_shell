@@ -2,7 +2,7 @@
 
 /**
  * _which - finds in the path the executable file.
- * @filename: filename to find in path.
+ * @filename: filename to find in the path.
  * @envp: array of environment variables.
  *
  * Return: 0 if no path found, 1 if path found.
