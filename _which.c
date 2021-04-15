@@ -1,7 +1,7 @@
 #include "header.h"
 
 /**
- * _is_path - Check if a command is a path
+ * _is_path - Check. if a command is a path
  * @command: string that contains the command to check.
  * Return: 1 (Success) or 0 (Failure).
  */
