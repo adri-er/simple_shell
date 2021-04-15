@@ -40,6 +40,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
+
+/* Structures */
 /**
  * struct built_in_struct - Struct for a shell built-in function,
  * name of the command and pointer to related function.
