@@ -2,8 +2,8 @@
 
 /**
  *  _str_cmp - validate if two strings are equals.
- *  @str1: text one.
- *  @str2: text two.
+ *  @str1: pointer to char, text one.
+ *  @str2: pointer to char, text two.
  *  Return: If the texts are equal 1, or else 0.
  */
 int _str_cmp(char *str1, char *str2)
@@ -26,8 +26,8 @@ int _str_cmp(char *str1, char *str2)
 
 /**
  *  _str_include - validate if one strings is included in another.
- *  @str1: text one.
- *  @str2: text two.
+ *  @str1: pointer to char, text one.
+ *  @str2: pointer to char, text two.
  *
  *  Return: If the texts are equal 1, or else 0.
  */
@@ -81,9 +81,9 @@ size_t _str_len(char *string)
  *			return (pointer + key_length)
  *		else
  *			return (NULL)
- * @key: char * string.
- * @envp: char * string.
- * Return: value of environment variable.
+ * @key: pointer to char.
+ * @envp: pointer to char.
+ * Return: pointer to char with environment variable.
  */
 char *_getenv(char *key, char *envp[])
 {
