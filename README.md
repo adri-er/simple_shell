@@ -6,7 +6,20 @@
 Description
 
 This is Unix Shell project Command Line Interface for Linux systems. This Shell can interpretate instructions and perform Syscall or instruction.
-<img src="./img/shell.png" alt="holbie" >
+
+<img src="./img/shell.png" alt="holbie" height="150" >
+
+## Features
+- Find commands in the PATH
+- Print environment
+- execute commands with parameters
+
+
+### Built-ins
+
+Built-ins are custom Commands in Shell
+- **env** print current environment
+- **exit** close the shell.
 
 ##  Allowed functions and system calls
 | Project      | Description              |
@@ -45,9 +58,14 @@ This is Unix Shell project Command Line Interface for Linux systems. This Shell 
 
 ## Usage
 
+Download Shell Repo
+```
+$ git clone  https://github.com/williamzborja/simple_shell
+```
+
 The flags for correct compilation
 ```
-gcc -Wall -Werror -Wextra -pedantic --std=c89
+gcc -Wall -Werror -Wextra -pedantic --std=c89 -o hsh
 ```
 
 ### Test Output
@@ -69,17 +87,18 @@ AUTHORS            prompt.c   shell.h            _strtok.c          command_exec
 
 
 ## Files
-| Project                                        | Description                           |
-| ---------------------------------------------- | ------------------------------------- |
-| [_which.c](./_which.c)                         | Read PATH environment variable        |
-| [built_in_functions.c](./built_in_functions.c) | Shell Built-in functions              |
-| [execute.c](./execute.c)                       | Execution with fork and without fork  |
-| [header.h](./header.h)                         | Header Library                        |
-| [prompt](./prompt.c)                           | Display Prompt |
-| [shell.c](./shell.c)                           | Entrypoint of Shell |
-| [string.c](./shell.string.c)               | Strings Manipulations |
-|[string_2.c](./shell.string_2.c)               | Strings Manipulations |
+| Project                                        | Description                          |
+| ---------------------------------------------- | ------------------------------------ |
+| [_which.c](./_which.c)                         | Read PATH environment variable       |
+| [built_in_functions.c](./built_in_functions.c) | Shell Built-in functions             |
+| [execute.c](./execute.c)                       | Execution with fork and without fork |
+| [header.h](./header.h)                         | Header Library                       |
+| [prompt](./prompt.c)                           | Display Prompt                       |
+| [shell.c](./shell.c)                           | Entrypoint of Shell                  |
+| [string.c](./shell.string.c)                   | Strings Manipulations                |
+| [string_2.c](./shell.string_2.c)               | Strings Manipulations                |
 
 ## AUTHORS
+:woman:  :man:  :man: :computer:
 
 Adriana Echeverri Romero, Oscar Angel, William Andres Rodriguez Borja
