@@ -18,9 +18,6 @@ int main(int argc, char **argv, char **envp)
 	if (argc > 1)
 	{
 		_print_error(argv[0], argv, NULL, counter);
-		/*  counter = 1; */
-		/*	argv++; */
-		/*	_validate_execute(argv, envp, argv, argc, counter); */
 		exit(EXIT_SH_FAILURE);
 	}
 	signal(SIGINT, exit);
