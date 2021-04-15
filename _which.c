@@ -1,11 +1,11 @@
 #include "header.h"
 
 /**
- * _which - find in the path executable file.
+ * _which - finds in the path the executable file.
  * @filename: filename to find in path.
  * @envp: array of environment variables.
  *
- * Return: path concatenated with filename.
+ * Return: 0 if no path found, 1 if path found.
  */
 int _which(char *filename, char *envp[])
 {
