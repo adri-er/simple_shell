@@ -10,7 +10,7 @@ void _printenv(char **envp)
 {
 	size_t i, length;
 
-	if(envp == NULL)
+	if (envp == NULL)
 	{
 		return;
 	}
