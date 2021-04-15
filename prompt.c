@@ -27,11 +27,9 @@ void _display_prompt(void)
 int _process_input(char *buf_get_line, char *command_ar[],
 				   char *argv[], int counter)
 {
-	ssize_t n_characters;
+	ssize_t n_characters, i, j, double_spaces;
 	size_t length = 0;
-	char *buffer_tmp = NULL;
-	char *token = NULL;
-	ssize_t i;
+	char *buffer_tmp = NULL, *token = NULL;
 
 	n_characters = getline(&buffer_tmp, &length, stdin);
 	if (n_characters == FILE_ERROR)
@@ -46,7 +44,13 @@ int _process_input(char *buf_get_line, char *command_ar[],
 	}
 	for (i = 0; i < n_characters; i++)
 	{
-		buf_get_line[i] = buffer_tmp[i];
+		if (buffer_tmp[i] != ' ')
+			double_spaces = 1;
+		if (double_spaces)
+		{
+			buf_get_line[j] = buffer_tmp[i];
+			j++;
+		}
 	}
 	free(buffer_tmp);
 	buf_get_line[i - 1] = '\0';
@@ -55,10 +59,7 @@ int _process_input(char *buf_get_line, char *command_ar[],
 		token = strtok(((i == 0) ? buf_get_line : NULL), DELIM);
 		command_ar[i] = token;
 		if (token == NULL)
-		{
 			break;
-		}
-
 		if (i == 0 && _str_len(token) > FILENAME_LIMIT_SIZE)
 		{
 			_print_error(argv[0], argv, token, counter);
