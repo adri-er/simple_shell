@@ -58,16 +58,18 @@ int _process_input(char *, char **, char **, int);
 void _execute_no_fork(char *command_ar[], char **envp);
 void _execute_fork(char *command_ar[], char **envp);
 int _str_cmp(char *str1, char *str2);
-size_t _str_len(char *string);
 int _is_built_in(char *command, char **envp);
 char *_getenv(char *key, char *envp[]);
-void _str_concat(char *str1, char *str2);
-void _str_copy(char *buffer, char *text);
 int _which(char *filename, char *envp[]);
 int _validate_execute(char **, char **, char **, int);
 int _is_path(char *command);
-void _itoa(int number, char *text);
 int _print_error(char *filename, char **argv, char *command, int counter);
+
+/* String manipulation */
+void _itoa(int number, char *text);
+void _str_concat(char *str1, char *str2);
+void _str_copy(char *buffer, char *text);
+size_t _str_len(char *string);
 
 /* built-ins */
 void _printenv(char **envp);
