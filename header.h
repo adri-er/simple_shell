@@ -43,8 +43,8 @@
 /**
  * struct built_in_struct - Struct for a shell built-in function,
  * name of the command and pointer to related function.
- * @name: command to be introduced.
- * @function: Second member
+ * @name: command introduced by user.
+ * @function: Function to be executed.
  */
 typedef struct built_in_struct
 {
