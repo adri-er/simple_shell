@@ -18,19 +18,19 @@
 #define IS_BUILT_IN 1
 #define ERROR_SEPARATOR ": "
 
-/* constants error */
+/* Constants error */
 #define ERR_EXEC_NO_READ 2
 #define ERR_NAME_LONG 3
 #define ERR_NO_EXEC 4
 #define ERR_NOT_FOUND 5
+#define EXIT_SH_FAILURE 127
 
-/* constants error */
+/* Constants error */
 #define MSG_ARG_MODE "Can't open "
 #define MSG_NAME_LONG "File name too long\n"
 #define MSG_NO_EXEC "Permission denied\n"
 #define MSG_NOT_FOUND "not found\n"
 
-#define EXIT_SH_FAILURE 127
 
 /* Libraries */
 #include <sys/types.h>
@@ -43,7 +43,7 @@
 /**
  * struct built_in_struct - Struct for a shell built-in function,
  * name of the command and pointer to related function.
- * @name: First member
+ * @name: command to be introduced.
  * @function: Second member
  */
 typedef struct built_in_struct
