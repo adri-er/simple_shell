@@ -10,6 +10,11 @@ void _printenv(char **envp)
 {
 	size_t i, length;
 
+	if (envp == NULL)
+	{
+		return;
+	}
+
 	for (i = 0; envp[i] != NULL; i++)
 	{
 		length = _str_len(envp[i]);

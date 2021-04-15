@@ -9,6 +9,7 @@
  */
 int main(int argc, char **argv, char **envp)
 {
+
 	char buf_get_line[BUFFER_SIZE];
 	char *command_array[BUFFER_SIZE];
 	int ok = 0, check_tty = 0, counter = 0, status = 0;
@@ -41,5 +42,5 @@ int main(int argc, char **argv, char **envp)
 		status = _validate_execute((char **)command_array, envp,
 								   argv, counter);
 	}
-	return (EXIT_SUCCESS);
+	return (status);
 }

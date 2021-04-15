@@ -21,15 +21,16 @@ void _execute_no_fork(char *command_ar[], char **envp)
  * @envp: Array of environment variables.
  * Return: None.
  */
-void _execute_fork(char *command_ar[], char **envp)
+int _execute_fork(char *command_ar[], char **envp)
 {
 	pid_t child;
+	int status = 0, exit_status = 0;
 
 	child = fork();
 	if (child == FILE_ERROR)
 	{
 		perror("");
-		return;
+		return (EXIT_FAILURE);
 	}
 	if (child == CHILD_PID)
 	{
@@ -37,9 +38,11 @@ void _execute_fork(char *command_ar[], char **envp)
 	}
 	if (child > CHILD_PID)
 	{
-		wait(NULL);
+		wait(&status);
 		kill(child, SIGKILL);
+		exit_status = WEXITSTATUS(status);
 	}
+	return (exit_status);
 }
 /**
  * _validate_execute - Validate case, interactive or not,
@@ -51,7 +54,7 @@ void _execute_fork(char *command_ar[], char **envp)
  * Return: 1 (Success) or 0 (Failure) and 2 (Built-in).
  */
 int _validate_execute(char *command_array[], char **envp,
-					  char **argv,  int counter)
+					  char **argv, int counter)
 {
 	char *command;
 	char command_copy[BUFFER_SIZE];
@@ -75,6 +78,5 @@ int _validate_execute(char *command_array[], char **envp,
 	if (is_error == 0)
 		return (EXIT_FAILURE);
 
-	_execute_fork(command_array, envp);
-	return (EXIT_SUCCESS);
+	return (_execute_fork(command_array, envp));
 }
