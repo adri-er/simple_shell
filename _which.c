@@ -21,6 +21,7 @@ int _which(char *filename, char *envp[])
 {
 	char *path, *token, path_copy[BUFFER_SIZE], token_copy[BUFFER_SIZE];
 	size_t i;
+	struct stat stat_info;
 
 	token = NULL;
 	path = _getenv(PATH, envp);
@@ -42,7 +43,7 @@ int _which(char *filename, char *envp[])
 		_str_concat(token_copy, "/");
 		_str_concat(token_copy, filename);
 
-		if (access(token_copy, F_OK) != -1)
+		if (stat(token_copy, &stat_info) == 0)
 		{
 			_str_copy(filename, token_copy);
 			return (TRUE);
