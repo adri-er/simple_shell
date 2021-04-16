@@ -53,15 +53,12 @@ void _quit(int status)
 int _is_built_in(char *command, char **envp, int status)
 {
 	size_t i;
-
-	if (_str_cmp(command, "exit"))
-	{
-		_quit(status);
-	}
-
 	built_in_t list[] = {
 		{"env", _printenv},
 		{NULL, NULL}};
+
+	if (_str_cmp(command, "exit"))
+		_quit(status);
 
 	for (i = 0; list[i].name != NULL; i++)
 	{
