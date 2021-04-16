@@ -66,7 +66,7 @@ int _validate_execute(char *command_array[], char **envp,
 	{
 		if (_is_built_in(command, envp))
 		{
-			return (IS_BUILT_IN);
+			return (EXIT_SUCCESS);
 		}
 		_str_copy((char *)command_copy, command);
 		if (_which((char *)command_copy, envp))
