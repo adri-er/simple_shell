@@ -10,13 +10,11 @@
 			"request": "launch",
 			"program": "${fileDirname}/hsh",
 			"args": [
-				"<",
-				"try_out"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
-			"externalConsole": false,
+			"externalConsole": true,
 			"MIMode": "gdb",
 			"setupCommands": [
 				{

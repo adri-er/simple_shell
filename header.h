@@ -63,6 +63,7 @@ char *_getenv(char *key, char *envp[]);
 int _which(char *filename, char *envp[]);
 int _validate_execute(char **, char **, char **, int);
 int _print_error(char *filename, char **argv, char *command, int counter);
+void handle_ctrl_c(int signal_num);
 
 /* Verification */
 int _is_path(char *command);

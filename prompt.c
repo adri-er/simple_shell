@@ -32,11 +32,13 @@ int _process_input(char *buf_get_line, char *command_ar[],
 
 	n_characters = getline(&buffer_tmp, &length, stdin);
 	if (n_characters == FILE_ERROR)
-	{	free(buffer_tmp);
+	{
+		free(buffer_tmp);
 		return (EOF);
 	}
 	if (n_characters == 1)
-	{	free(buffer_tmp);
+	{
+		free(buffer_tmp);
 		return (EXIT_FAILURE);
 	}
 	for (i = 0, j = 0; i < n_characters; i++)
@@ -66,4 +68,17 @@ int _process_input(char *buf_get_line, char *command_ar[],
 		}
 	}
 	return (EXIT_SUCCESS);
+}
+
+/**
+ * handle_ctrl_c - this function avoid that ctrl + c close program
+ * @signal_num: signal to override behavior
+ */
+void handle_ctrl_c(int signal_num)
+{
+	if (signal_num == SIGINT)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		_display_prompt();
+	}
 }

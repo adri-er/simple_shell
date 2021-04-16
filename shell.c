@@ -21,7 +21,7 @@ int main(int argc, char **argv, char **envp)
 		_print_error(argv[0], argv, NULL, counter);
 		exit(EXIT_SH_FAILURE);
 	}
-	signal(SIGINT, exit);
+	signal(SIGINT, handle_ctrl_c);
 
 	while (ok != EOF)
 	{
