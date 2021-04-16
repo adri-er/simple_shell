@@ -40,7 +40,7 @@ int main(int argc, char **argv, char **envp)
 			continue;
 		}
 		status = _validate_execute((char **)command_array, envp,
-								   argv, counter);
+								   argv, counter, status);
 	}
 	return (status);
 }

@@ -50,11 +50,12 @@ int _execute_fork(char *command_ar[], char **envp)
  * @command_array: Array of commands introduced in terminal.
  * @envp: Array of environment variables.
  * @argv: Main program arguments.
+ * @status: previous exit command status
  * @counter: Number of arguments in terminal.
  * Return: 1 (Success) or 0 (Failure) and 2 (Built-in).
  */
 int _validate_execute(char *command_array[], char **envp,
-					  char **argv, int counter)
+					  char **argv, int counter, int status)
 {
 	char *command;
 	char command_copy[BUFFER_SIZE];
@@ -64,7 +65,7 @@ int _validate_execute(char *command_array[], char **envp,
 	command = command_array[0];
 	if (!_is_path(command))
 	{
-		if (_is_built_in(command, envp))
+		if (_is_built_in(command, envp, status))
 		{
 			return (EXIT_SUCCESS);
 		}

@@ -35,28 +35,32 @@ void _printenv(char **envp)
 
 /**
  * _quit - Exit the simple shell.
- * @envp: Environment variables array.
+ * @status: exit command status
  * Return: None.
  */
-void _quit(char **envp)
+void _quit(int status)
 {
-	envp = envp;
-	exit(EXIT_SUCCESS);
+	exit(status);
 }
 
 /**
 *  _is_built_in - receive pointer nd searches for related function.
 *	@command: Command which is going to relate to a function.
 *	@envp: Array of environment variables.
+*   @status: previous exit command status
 *	Return: True if there is a related function, False instead.
 */
-int _is_built_in(char *command, char **envp)
+int _is_built_in(char *command, char **envp, int status)
 {
 	size_t i;
 
+	if (_str_cmp(command, "exit"))
+	{
+		_quit(status);
+	}
+
 	built_in_t list[] = {
 		{"env", _printenv},
-		{"exit", _quit},
 		{NULL, NULL}};
 
 	for (i = 0; list[i].name != NULL; i++)

@@ -31,7 +31,6 @@
 #define MSG_NO_EXEC "Permission denied\n"
 #define MSG_NOT_FOUND "not found\n"
 
-
 /* Libraries */
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -61,13 +60,13 @@ void _execute_no_fork(char *command_ar[], char **envp);
 int _execute_fork(char *command_ar[], char **envp);
 char *_getenv(char *key, char *envp[]);
 int _which(char *filename, char *envp[]);
-int _validate_execute(char **, char **, char **, int);
-int _print_error(char *filename, char **argv, char *command, int counter);
+int _validate_execute(char **, char **, char **, int, int);
+int _print_error(char *, char **, char *, int);
 void handle_ctrl_c(int signal_num);
 
 /* Verification */
 int _is_path(char *command);
-int _is_built_in(char *command, char **envp);
+int _is_built_in(char *, char **, int);
 
 /* String manipulation */
 void _itoa(int number, char *text);
@@ -78,6 +77,6 @@ int _str_cmp(char *str1, char *str2);
 
 /* built-ins */
 void _printenv(char **envp);
-void _quit(char **envp);
+void _quit(int status);
 
 #endif /* HEADER_H */
